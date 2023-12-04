@@ -50,18 +50,21 @@ bool bDeath = 0;
 void setup() {
   Serial.begin(9600);
 
+  //added for true random start of fields for the rgb colors
+  randomSeed(analogRead(5)); // randomize using noise from analog pin 5
+
   //set pins to output
   for (int r = 0; r < sizerow; r++) {
     pinMode (row[r], OUTPUT); //Set all pins to output
     Serial.print(row[r]);
-    Serial.println(" Output ");
+    Serial.println(" rOutput ");
   }
   for (int c = 0; c < sizecol; c++) {
     pinMode(colr[c], OUTPUT);
     pinMode(colg[c], OUTPUT);
     pinMode(colb[c], OUTPUT);
     Serial.print(colr[c]);
-    Serial.println(" Output ");
+    Serial.println(" cOutput ");
   }
   //pick a random seed for each color
   imageData[0].b[random(0, 24)] = 1;
@@ -86,7 +89,7 @@ void loop() {
     //update what is being displayed
     displayBuffer = 1 - displayBuffer;
     //set new time
-    t = millis() + 500;
+    t = millis() + 250;
   }
 
 
